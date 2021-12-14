@@ -7,12 +7,19 @@
   </head>
 
   <body>
-    <audio autoplay loop id="playAudio">
+    <audio loop id="playAudio">
       <source src="./audio/soundtrack.mp3" />
     </audio>
     <div class="musicPlay" id="music">🔈</div>
     <div class="counter" id="counter"></div>
     <div class="reset" id="reset">Reset 🔄</div>
+    <select name="theme" id="theme">
+      <option value="temp0">Styl 1</option>
+      <option value="temp1">Styl 2</option>
+      <option value="temp2">Styl 3</option>
+      <option value="temp3">Styl 4</option>
+      <option value="temp4">Styl 5</option>
+    </select>
     <div class="game" id="game">
       <div class="box_game">
         <div class="card"></div>
@@ -41,6 +48,7 @@
         <button class="controlBtn" id="right">➡</button>
       </div>
     </div>
-    <script src="game.js"></script>
+    <script src="./scripts/colors.js"></script>
+    <script src="./scripts/game.js"></script>
   </body>
 </html>

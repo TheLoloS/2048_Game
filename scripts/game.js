@@ -14,6 +14,35 @@ window.mobileAndTabletCheck = function () {
   return check;
 };
 
+//add event to edit theme
+document.querySelector("#theme").addEventListener("change", (event) => {
+  event.target.value == "temp0" && changeColors(temp0);
+  event.target.value == "temp1" && changeColors(temp1);
+  event.target.value == "temp2" && changeColors(temp2);
+  event.target.value == "temp3" && changeColors(temp3);
+  event.target.value == "temp4" && changeColors(temp4);
+  localStorage.setItem("theme", event.target.value);
+});
+//change css variables
+function changeColors(a) {
+  for (const key in a) {
+    document.documentElement.style.setProperty(`--${key}`, `${a[key]}`);
+  }
+  //
+}
+//add last theme
+document.querySelector("#theme").value = localStorage.getItem("theme");
+
+if (localStorage.getItem("theme")) {
+  localStorage.getItem("theme") == "temp0" && changeColors(temp0);
+  localStorage.getItem("theme") == "temp1" && changeColors(temp1);
+  localStorage.getItem("theme") == "temp2" && changeColors(temp2);
+  localStorage.getItem("theme") == "temp3" && changeColors(temp3);
+  localStorage.getItem("theme") == "temp4" && changeColors(temp4);
+}
+
+// document.documentElement.style.setProperty("--my-variable-name", "pink");
+
 const mobileStatus = window.mobileAndTabletCheck();
 document.querySelector("#music").addEventListener("click", (e) => {
   var myAudio = document.querySelector("#playAudio");
