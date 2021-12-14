@@ -20,6 +20,22 @@
   line-height: 4vh;
   border-radius: 3%;
 }
+#reset {
+  position: absolute;
+  top: 4vh;
+  left: 4vh;
+  z-index: 10000;
+  background-color: #fdd835;
+  color: #ffffff;
+  font-size: 2.5vh;
+  border: 0;
+  width: 10vh;
+  text-align: center;
+  height: 4vh;
+  line-height: 4vh;
+  border-radius: 3%;
+  font-family: sans-serif;
+}
 
 .box_game {
   display: grid;

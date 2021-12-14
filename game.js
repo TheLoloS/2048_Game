@@ -23,6 +23,16 @@ let map = my_array_cards.length;
 let numOfRows = Math.floor(Math.sqrt(map));
 let mapCords = [];
 
+//save progress in COOKIES
+function saveProgress() {
+  const mapSatus = [...document.querySelectorAll(".card")];
+  const obj = mapSatus.map((e) => {
+    return { class: e.classList[1], value: e.innerText };
+  });
+  const json = JSON.stringify(obj);
+  localStorage.setItem("map", json);
+}
+
 let div = document.createElement("div");
 div.classList.add("card", "field-none");
 
@@ -42,14 +52,27 @@ function firstGen() {
 }
 firstGen();
 //add value and classes (generate map)
-//add first 2 fields
-my_array_cards.forEach((e, i) => {
-  counter();
-  const x = randomGen();
-  fG1 == i || fG2 == i
-    ? editCart(e, `field-${x}`, `${x}`)
-    : editCart(e, `field-none`, ``);
+
+//reset progres
+document.querySelector("#reset").addEventListener("click", () => {
+  localStorage.removeItem("map");
+  window.location.reload(true);
 });
+
+//add first 2 fields and save progress of game
+!localStorage.getItem("map")
+  ? my_array_cards.forEach((e, i) => {
+      counter();
+      const x = randomGen();
+      fG1 == i || fG2 == i
+        ? editCart(e, `field-${x}`, `${x}`)
+        : editCart(e, `field-none`, ``);
+    })
+  : my_array_cards.forEach((e, i) => {
+      const saveMap = JSON.parse(localStorage.getItem("map"));
+      editCart(e, `${saveMap[i].class}`, `${saveMap[i].value}`);
+      counter();
+    });
 
 //add 1 field after click
 function nextAdd() {
@@ -103,6 +126,7 @@ function list(a) {
   sort(a);
   nextAdd();
   counter();
+  saveProgress();
 }
 
 //add click events
