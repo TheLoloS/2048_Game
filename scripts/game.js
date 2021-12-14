@@ -31,7 +31,6 @@ function changeColors(a) {
   //
 }
 //add last theme
-document.querySelector("#theme").value = localStorage.getItem("theme");
 
 if (localStorage.getItem("theme")) {
   localStorage.getItem("theme") == "temp0" && changeColors(temp0);
