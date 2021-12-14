@@ -15,6 +15,17 @@ window.mobileAndTabletCheck = function () {
 };
 
 const mobileStatus = window.mobileAndTabletCheck();
+document.querySelector("#music").addEventListener("click", (e) => {
+  var myAudio = document.querySelector("#playAudio");
+
+  if (myAudio.duration > 0 && !myAudio.paused) {
+    document.querySelector("#playAudio").pause();
+    console.log("stop");
+  } else {
+    document.querySelector("#playAudio").play();
+    console.log("play");
+  }
+});
 
 let cards = document.querySelectorAll(".card");
 let my_array_cards = [...cards];
