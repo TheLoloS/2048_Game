@@ -44,14 +44,12 @@ if (localStorage.getItem("theme")) {
 
 const mobileStatus = window.mobileAndTabletCheck();
 document.querySelector("#music").addEventListener("click", (e) => {
-  var myAudio = document.querySelector("#playAudio");
+  let myAudio = document.querySelector("#playAudio");
 
   if (myAudio.duration > 0 && !myAudio.paused) {
     document.querySelector("#playAudio").pause();
-    console.log("stop");
   } else {
     document.querySelector("#playAudio").play();
-    console.log("play");
   }
 });
 
@@ -61,6 +59,7 @@ let fG1, fG2;
 let map = my_array_cards.length;
 let numOfRows = Math.floor(Math.sqrt(map));
 let mapCords = [];
+let win = localStorage.getItem("win");
 
 //save progress in COOKIES
 function saveProgress() {
@@ -77,26 +76,40 @@ div.classList.add("card", "field-none");
 
 const clearField = div.cloneNode(true);
 
-//random generator to fields values TODO: add other values on letter game
+//random generator to fields values
 const randomGen = () => {
   const random_card = Math.floor(Math.random() * 100);
   if (random_card < 90 && random_card >= 0) return 2;
   if (random_card <= 100 && random_card >= 90) return 4;
 };
 //generate first 2 fields
-function firstGen() {
+(function firstGen() {
   fG1 = Math.floor(Math.random() * (numOfRows * numOfRows));
   fG2 = Math.floor(Math.random() * (numOfRows * numOfRows));
   fG1 == fG2 && firstGen();
-}
-firstGen();
+})();
+
 //add value and classes (generate map)
 
 //reset progres
 document.querySelector("#reset").addEventListener("click", () => {
   localStorage.removeItem("map");
+  localStorage.removeItem("win");
   window.location.reload(true);
 });
+//add events on btns on end game
+document
+  .querySelector("#notification > div:nth-child(4) > button:nth-child(2)")
+  .addEventListener("click", () => {
+    localStorage.removeItem("map");
+    window.location.reload(true);
+  });
+document
+  .querySelector("#notification > div:nth-child(4) > button:nth-child(1)")
+  .addEventListener("click", () => {
+    document.querySelector("#notification").classList.add("displayNone");
+    document.body.style.backgroundImage = "url('')";
+  });
 
 //add first 2 fields and save progress of game
 !localStorage.getItem("map")
@@ -119,14 +132,31 @@ function nextAdd() {
     return e.classList[1] == "field-none";
   });
   const x = randomGen();
-  a.length
-    ? editCart(a[Math.floor(Math.random() * a.length)], `field-${x}`, `${x}`)
-    : alert("mozesz grac dalej?");
+  if (a.length) {
+    editCart(a[Math.floor(Math.random() * a.length)], `field-${x}`, `${x}`);
+  } else {
+    adding("left", true) ||
+    adding("right", true) ||
+    adding("top", true) ||
+    adding("bottom", true)
+      ? undefined
+      : notification();
+  }
+  let o = my_array_cards.filter((e) => {
+    return e.classList[1] == "field-2048";
+  });
+  if (o.length) {
+    if (!win) {
+      notification(true);
+      win = true;
+      localStorage.setItem("win", true);
+      document.body.style.backgroundImage = "url('./media/confetti.gif')";
+    }
+  }
 }
 
 //func add parameters to element
 function editCart(e, a, b) {
-  // console.log(e, a, b);
   e.className = "";
   e.classList.add("card", a);
   e.innerText = b;
@@ -168,20 +198,29 @@ function list(a) {
   saveProgress();
 }
 
+//add small notification window
+function notification(state) {
+  let div = document.querySelector("#notification");
+  let i = document.querySelector("#notification > div > p > i");
+  i.textContent = document.querySelector(".counter").textContent;
+  div.className = "notification";
+  if (state) {
+    div.children[0].textContent = "❤🥇 YOU WIN 🥇❤";
+    div.children[3].children[0].textContent = "Graj Dalej";
+  }
+}
+
 //add click events
 let btns = [...document.querySelectorAll(".controlBtn")];
 !mobileStatus
   ? btns.map((e, i) => {
       e.addEventListener("click", () => {
-        sort(e.getAttribute("id"));
-        adding(e.getAttribute("id"));
-        sort(e.getAttribute("id"));
-        nextAdd();
+        list(e.getAttribute("id"));
       });
     })
   : btns.forEach((e) => e.remove());
 
-//petla filtrujaca puste pula
+//filter clear fields
 function sort(vector) {
   if (vector == "left") {
     let filterArr = [];
@@ -190,12 +229,11 @@ function sort(vector) {
       for (let x = 0; x < numOfRows; x++) {
         arr.push(mapCords[y][x]);
       }
-      //filtrowanie z 5 elementów
+
       let arrFiltered = arr.filter((e) => {
         return e.classList[1] !== "field-none";
       });
 
-      //ta petla słuzy do dodanie argumentów po filter
       for (let i = 0; i < numOfRows; i++) {
         arrFiltered[i]
           ? filterArr.push(arrFiltered[i])
@@ -215,12 +253,12 @@ function sort(vector) {
       for (let x = 0; x < numOfRows; x++) {
         arr.push(mapCords[y][x]);
       }
-      //filtrowanie z 5 elementów
+      //filter 5 elements
       let arrFiltered = arr.filter((e) => {
         return e.classList[1] !== "field-none";
       });
 
-      //ta petla słuzy do dodanie argumentów po filter
+      //loops for add ellements to arr
       for (let i = 0; i < numOfRows; i++) {
         arrFiltered[i]
           ? filterArrH.push(arrFiltered[i])
@@ -312,7 +350,7 @@ function sort(vector) {
 }
 
 //adding function
-function adding(vector) {
+function adding(vector, state) {
   //create variables for other vectors
   let a, b, c;
 
@@ -339,10 +377,18 @@ function adding(vector) {
         c = mapCords[i][x];
         a = c.innerText;
       }
-      //if statments thats allow to check and repalce filds
-      if (a == b?.innerText && a !== "") {
-        editCart(c, `field-${Number(a) * 2}`, `${Number(a) * 2}`);
-        editCart(b, `field-none`, ``);
+      if (!state) {
+        //if statments thats allow to check and repalce filds
+        if (a == b?.innerText && a !== "") {
+          editCart(c, `field-${Number(a) * 2}`, `${Number(a) * 2}`);
+          editCart(b, `field-none`, ``);
+        }
+      } else {
+        if (a == b?.innerText && a !== "") {
+          return true;
+        } else {
+          if (x == numOfRows - 1 && i == numOfRows - 1) return false;
+        }
       }
     }
   }

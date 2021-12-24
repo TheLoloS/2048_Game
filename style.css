@@ -18,10 +18,29 @@
   --maincolor: #fff176;
 }
 
+@keyframes show {
+  0% {
+    /* display: none; */
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes hide {
+  100% {
+    display: none;
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
-
+  user-select: none;
   overflow: hidden;
 }
 body {
@@ -42,6 +61,7 @@ body {
   height: 4vh;
   line-height: 4vh;
   border-radius: 3%;
+  cursor: default;
 }
 #reset {
   position: absolute;
@@ -58,6 +78,7 @@ body {
   line-height: 4vh;
   border-radius: 3%;
   font-family: sans-serif;
+  cursor: pointer;
 }
 
 .box_game {
@@ -93,6 +114,7 @@ body {
   line-height: 4vh;
   border-radius: 3%;
   font-family: sans-serif;
+  cursor: pointer;
 }
 
 #theme {
@@ -110,10 +132,11 @@ body {
   line-height: 4vh;
   border-radius: 3%;
   font-family: sans-serif;
-  outline: none;
+  cursor: pointer;
 }
 #theme > option {
   background-color: #1d1d1d;
+  cursor: pointer;
 }
 
 .card {
@@ -192,7 +215,6 @@ body {
 
 .controlBtn {
   cursor: pointer;
-  outline: none;
   background-color: var(--maincolor);
   border: 0;
   width: 10vh;
@@ -215,4 +237,71 @@ body {
   align-items: center;
   width: 50vh;
   justify-content: space-between;
+}
+#notification > h1 {
+  color: var(--maincolor);
+}
+
+.notification {
+  display: flex;
+  width: 60vw;
+  height: 45vh;
+  background-color: rgba(41, 41, 41, 0.9);
+  position: absolute;
+  z-index: 1000000000;
+  top: 20vh;
+  left: 20vw;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  line-height: 4vh;
+  /* border-radius: 3%; */
+  font-family: sans-serif;
+  font-size: 2vh;
+  animation: show 1s forwards;
+}
+.notification > hr {
+  width: 80%;
+}
+
+.notification > div > p > i {
+  color: var(--maincolor);
+  font-size: 3vh;
+}
+.notification > div > button {
+  background-color: var(--maincolor);
+  color: #ffffff;
+  font-size: 1.5vh;
+  border: 0;
+  width: 10vh;
+  text-align: center;
+  height: 4vh;
+  line-height: 4vh;
+  border-radius: 3%;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+.displayNone {
+  animation: hide 1s forwards;
+}
+.firstDisplayNone {
+  display: none;
+}
+
+@media (orientation: portrait) {
+  #notification {
+    width: 70vw;
+    height: 50vh;
+    top: 25vh;
+    left: 15vw;
+    text-align: center;
+  }
+  #notification > h1 {
+    font-size: 3vh;
+  }
+  #notification > div > button {
+    font-size: 2vh;
+  }
 }
