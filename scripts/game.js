@@ -142,15 +142,17 @@ function nextAdd() {
       ? undefined
       : notification();
   }
+  //search for 2048 field
   let o = my_array_cards.filter((e) => {
     return e.classList[1] == "field-2048";
   });
   if (o.length) {
+    //if for once add
     if (!win) {
       notification(true);
-      win = true;
       localStorage.setItem("win", true);
       document.body.style.backgroundImage = "url('./media/confetti.gif')";
+      win = localStorage.getItem("win");
     }
   }
 }
@@ -161,9 +163,6 @@ function editCart(e, a, b) {
   e.classList.add("card", a);
   e.innerText = b;
 }
-//-----------------------------------------------------//
-//--------Script for show new element on click---------//
-//-----------------------------------------------------//
 
 //add Cartesian product (map)
 
@@ -193,6 +192,7 @@ function list(a) {
   sort(a);
   adding(a);
   sort(a);
+  counter();
   nextAdd();
   counter();
   saveProgress();
