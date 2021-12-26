@@ -237,7 +237,7 @@ body {
 
 #theme {
   position: absolute;
-  bottom: 1vh;
+  bottom: 2vh;
   right: 5vh;
   z-index: 10000;
   color: #ffffff;
@@ -453,6 +453,8 @@ body {
     font-size: 3vh;
   }
   #notification > div > button {
-    font-size: 2vh;
+    font-size: 2.5vh;
+    width: 13vh;
+    height: 5vh;
   }
 }
