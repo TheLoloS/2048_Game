@@ -356,25 +356,28 @@ function adding(vector, state) {
 
   //2 for loops for grab all game fields
   for (let x = numOfRows - 1; x >= 0; x--) {
-    for (let i = numOfRows - 1; i >= 0; i--) {
+    for (let y = numOfRows - 1; y >= 0; y--) {
+      //invert cords for change scannning destination and fix bug
+      let invertedX = Math.abs(x - (numOfRows - 1));
+      let invertedY = Math.abs(y - (numOfRows - 1));
       if (vector == "left") {
-        b = mapCords[x][i + 1];
-        c = mapCords[x][i];
+        b = mapCords[invertedX][invertedY - 1];
+        c = mapCords[invertedX][invertedY];
         a = c.innerText;
       }
       if (vector == "right") {
-        b = mapCords[x][i - 1];
-        c = mapCords[x][i];
+        b = mapCords[x][y - 1];
+        c = mapCords[x][y];
         a = c.innerText;
       }
       if (vector == "top") {
-        b = mapCords[i + 1]?.[x];
-        c = mapCords[i][x];
+        b = mapCords[invertedY - 1]?.[invertedX];
+        c = mapCords[invertedY][invertedX];
         a = c.innerText;
       }
       if (vector == "bottom") {
-        b = mapCords[i - 1]?.[x];
-        c = mapCords[i][x];
+        b = mapCords[y - 1]?.[x];
+        c = mapCords[y][x];
         a = c.innerText;
       }
       if (!state) {
@@ -387,7 +390,7 @@ function adding(vector, state) {
         if (a == b?.innerText && a !== "") {
           return true;
         } else {
-          if (x == 0 && i == 0) return false;
+          if (x == 0 && y == 0) return false;
         }
       }
     }
