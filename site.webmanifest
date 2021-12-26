@@ -1,5 +1,5 @@
 {
-  "name": "2048",
+  "name": "THS",
   "short_name": "2048",
   "icons": [
     {
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
+  "theme_color": "#1d1d1d",
   "background_color": "#000000",
   "display": "standalone"
 }

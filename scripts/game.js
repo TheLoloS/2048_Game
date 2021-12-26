@@ -355,8 +355,10 @@ function adding(vector, state) {
   let a, b, c;
 
   //2 for loops for grab all game fields
-  for (let x = 0; x < numOfRows; x++) {
-    for (let i = 0; i < numOfRows; i++) {
+  for (let x = numOfRows - 1; x >= 0; x--) {
+    for (let i = numOfRows - 1; i >= 0; i--) {
+      // for (let x = 0; x < numOfRows; x++) {
+      // for (let i = 0; i < numOfRows; i++) {
       if (vector == "left") {
         b = mapCords[x][i + 1];
         c = mapCords[x][i];
@@ -384,10 +386,12 @@ function adding(vector, state) {
           editCart(b, `field-none`, ``);
         }
       } else {
+        console.log(c, b);
         if (a == b?.innerText && a !== "") {
           return true;
         } else {
-          if (x == numOfRows - 1 && i == numOfRows - 1) return false;
+          // if (x == numOfRows - 1 && i == numOfRows - 1) return false;
+          if (x == 0 && i == 0) return false;
         }
       }
     }
