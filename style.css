@@ -110,6 +110,74 @@ body {
   cursor: pointer;
 }
 
+#logout {
+  position: absolute;
+  bottom: 8vh;
+  left: 4vh;
+  z-index: 10000;
+  background-color: var(--maincolor);
+  color: #ffffff;
+  font-size: 2.5vh;
+  border: 0;
+  width: 10vh;
+  text-align: center;
+  height: 4vh;
+  line-height: 4vh;
+  border-radius: 3%;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+#rank {
+  position: absolute;
+  top: 4vh;
+  right: 15vh;
+  z-index: 10000;
+  background-color: var(--maincolor);
+  color: #ffffff;
+  font-size: 2.5vh;
+  border: 0;
+  width: 10vh;
+  text-align: center;
+  height: 4vh;
+  line-height: 4vh;
+  border-radius: 3%;
+  font-family: sans-serif;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#rankField {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80vw;
+  height: 80vh;
+  background-color: rgba(41, 41, 41, 0.9);
+  position: absolute;
+  z-index: 1000000000;
+  top: 10vh;
+  left: 10vw;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: white;
+  line-height: 4vh;
+  font-family: sans-serif;
+  font-size: 2vh;
+  -webkit-animation: show 1s forwards;
+  animation: show 1s forwards;
+  text-align: center;
+}
+
 .box_game {
   display: -ms-grid;
   display: grid;
@@ -253,6 +321,24 @@ body {
   cursor: pointer;
 }
 #theme > option {
+  background-color: #1d1d1d;
+  cursor: pointer;
+}
+#language {
+  z-index: 10000;
+  color: #ffffff;
+  background-color: transparent;
+  font-size: 2vh;
+  border: 0;
+  width: 15vh;
+  text-align: center;
+  height: 4vh;
+  line-height: 4vh;
+  border-radius: 3%;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+#language > option {
   background-color: #1d1d1d;
   cursor: pointer;
 }
@@ -405,7 +491,6 @@ body {
   flex-direction: column;
   color: white;
   line-height: 4vh;
-  /* border-radius: 3%; */
   font-family: sans-serif;
   font-size: 2vh;
   -webkit-animation: show 1s forwards;

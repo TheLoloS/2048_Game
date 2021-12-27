@@ -14,6 +14,8 @@ window.mobileAndTabletCheck = function () {
   return check;
 };
 
+import Popup from "../scripts/popUp.js";
+
 //add event to edit theme
 document.querySelector("#theme").addEventListener("change", (event) => {
   event.target.value == "temp0" && changeColors(temp0);
@@ -451,3 +453,33 @@ function handleTouchMove(evt) {
   xDown = null;
   yDown = null;
 }
+
+//add setings showup
+
+document.querySelector("#logout").addEventListener("click", (e) => {
+  new Popup("warn", "Logout!");
+  localStorage.removeItem("token");
+  window.location.reload(true);
+});
+let allUsersFromRanking;
+fetch("https://rest-api-thsx.herokuapp.com/api/getscore")
+  .then((response) => response.json())
+  .then((data) => {
+    allUsersFromRanking = data.sort((a, b) =>
+      a.score < b.score ? 1 : b.score < a.score ? -1 : 0
+    );
+  })
+  .then(() => {
+    for (let i = 0; i < 10; i++) {
+      if (!allUsersFromRanking[i]) return;
+      document.querySelector(
+        "#rankField > table > tbody"
+      ).innerHTML += `<tr><td>${i + 1}.</td><td>${
+        allUsersFromRanking[i].username
+      }</td><td>${allUsersFromRanking[i].score}</td></tr>`;
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+document.querySelector("#rank").addEventListener("click", (e) => {});

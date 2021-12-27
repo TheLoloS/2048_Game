@@ -1,49 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="module">
+      localStorage.getItem("token") && window.location.replace("/");
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>register</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../styleForm.css" />
+    <link rel="icon" type="image/png" href="../favicon-16x16.png" />
   </head>
   <body>
-    <h1>Registration</h1>
-    <form id="reg-form">
-      <input type="text" autocomplete="off" placeholder="Username" />
-      <input type="password" autocomplete="off" placeholder="Password" />
-      <input type="submit" value="Submit Form" />
-    </form>
-
-    <script>
-      const form1 = document.getElementById("reg-form");
-      form1.addEventListener("submit", registerUser);
-
-      async function registerUser(event) {
-        event.preventDefault();
-        const username = event.target.children[0].value;
-        const password = event.target.children[1].value;
-
-        const result = await fetch(
-          "https://rest-api-thsx.herokuapp.com/api/register",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              username,
-              password,
-            }),
-          }
-        ).then((res) => res.json());
-
-        if (result.status === "ok") {
-          // everythign went fine
-          alert("Success");
-        } else {
-          alert(result.error);
-        }
-      }
-    </script>
+    <section>
+      <h1>Registration</h1>
+      <form id="reg-form">
+        <input
+          class="finput"
+          type="text"
+          autocomplete="off"
+          placeholder="Username"
+        />
+        <input
+          class="finput"
+          type="password"
+          autocomplete="off"
+          placeholder="Password"
+        />
+        <div>
+          <input class="fbtn" type="submit" value="Register" />
+          <input
+            class="fbtn"
+            onclick="window.location.replace('/login');"
+            value="log in"
+          />
+        </div>
+      </form>
+    </section>
+    <script type="module" src="./script.js"></script>
   </body>
 </html>
