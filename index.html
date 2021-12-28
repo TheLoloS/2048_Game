@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-    <!-- // !localStorage.getItem("token") && window.location.replace("/login");  -->
-    <script type="module">
-
-        console.log(window.location);
+    <script>
+        if (!localStorage.getItem("token")) {
+            window.location.href = window.location.href + "login/"
+        };
+        console.log(window.location.href + "login/");
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
