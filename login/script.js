@@ -34,7 +34,6 @@ async function login(event) {
     );
     // console.log(result);
     new Popup("success", "Logged in successfully");
-    alert(window.location.href.split("l")[0]);
     window.location.href = localStorage.getItem("mainHref");
   } else {
     new Popup("error", result.error);
