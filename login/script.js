@@ -5,7 +5,7 @@ localStorage.getItem("registered") && localStorage.removeItem("registered");
 const form2 = document.getElementById("login");
 form2.addEventListener("submit", login);
 if (localStorage.getItem("token")) {
-  window.location.href = window.location.href + "/";
+  window.location.href = localStorage.getItem("mainHref");
 }
 
 async function login(event) {
@@ -34,8 +34,8 @@ async function login(event) {
     );
     // console.log(result);
     new Popup("success", "Logged in successfully");
-    alert(window.location.href + "/");
-    window.location.href = window.location.href + "/";
+    alert(window.location.href.split("l")[0]);
+    window.location.href = localStorage.getItem("mainHref");
   } else {
     new Popup("error", result.error);
   }

@@ -1,38 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <script>
-        if (!localStorage.getItem("token")) {
-            window.location.href = window.location.href + "login/"
-        };
+      localStorage.setItem("mainHref", window.location.href);
+      if (!localStorage.getItem("token")) {
+        window.location.href = localStorage.getItem("mainHref") + "login/";
+      }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2048</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
     <link rel="manifest" href="./site.webmanifest" />
     <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#ffc40d" />
     <meta name="msapplication-TileColor" content="#ffc40d" />
     <meta name="theme-color" content="#000000" />
-</head>
+  </head>
 
-<body>
+  <body>
     <audio loop id="playAudio">
       <source src="./audio/soundtrack.mp3" />
     </audio>
     <div class="musicPlay" id="music">
-        <img src="./media/soundIcon.png" height="100%" />
+      <img src="./media/soundIcon.png" height="100%" />
     </div>
 
     <div class="counter" id="counter"></div>
     <div class="reset" id="reset">Reset</div>
     <div class="logout" id="logout">Logout</div>
     <div class="rank" id="rank">
-        <img src="./media/crown.png" height="80%" />
+      <img src="./media/crown.png" height="80%" />
     </div>
 
     <select name="theme" id="theme">
@@ -43,115 +57,114 @@
       <option value="temp4">Style 5</option>
     </select>
     <div class="game" id="game">
-        <div class="box_game">
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-        </div>
+      <div class="box_game">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+      </div>
     </div>
     <div class="btnContainer" id="btnContainer">
-        <div class="btnsC" id="btnsC">
-            <button class="controlBtn" id="left">⬅</button>
-            <button class="controlBtn" id="top">⬆</button>
-            <button class="controlBtn" id="bottom">⬇</button>
-            <button class="controlBtn" id="right">➡</button>
-        </div>
+      <div class="btnsC" id="btnsC">
+        <button class="controlBtn" id="left">⬅</button>
+        <button class="controlBtn" id="top">⬆</button>
+        <button class="controlBtn" id="bottom">⬇</button>
+        <button class="controlBtn" id="right">➡</button>
+      </div>
     </div>
     <div class="firstDisplayNone notification" id="notification">
-        <h1>GAME OVER</h1>
-        <hr />
-        <div>
-            <p>Twój wynik to: <i>0</i></p>
-        </div>
+      <h1>GAME OVER</h1>
+      <hr />
+      <div>
+        <p>Twój wynik to: <i>0</i></p>
+      </div>
 
-        <div><button>Analiza</button> <button>Reset</button></div>
+      <div><button>Analiza</button> <button>Reset</button></div>
     </div>
     <div class="" id="rankField">
-        <table>
-            <tbody>
-                <tr>
-                    <td>Nr.</td>
-                    <td>Nick.</td>
-                    <td>Wynik.</td>
-                </tr>
-                <tr>
-                    <td>1.&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>2.&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>3.&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>4.&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>5.&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>6.&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>7.&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>8.&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>9&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>10&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>-----&nbsp;</td>
-                    <td>--------&nbsp;</td>
-                    <td>---------------------&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </tbody>
-        </table>
+      <table>
+        <tbody>
+          <tr>
+            <td>Nr.</td>
+            <td>Nick.</td>
+            <td>Wynik.</td>
+          </tr>
+          <tr>
+            <td>1.&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>2.&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>3.&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>4.&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>5.&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>6.&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>7.&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>8.&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>9&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>10&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>-----&nbsp;</td>
+            <td>--------&nbsp;</td>
+            <td>---------------------&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <script src="./scripts/colors.js"></script>
     <script type="module" src="./scripts/game.js"></script>
-</body>
-
+  </body>
 </html>
