@@ -148,7 +148,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-#rankField {
+.rankField {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -170,12 +170,27 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
   color: white;
-  line-height: 4vh;
+
   font-family: sans-serif;
-  font-size: 2vh;
+  font-size: 3vh;
   -webkit-animation: show 1s forwards;
   animation: show 1s forwards;
   text-align: center;
+}
+
+tbody > tr:first-child {
+  color: var(--maincolor);
+  border-bottom: 1px white solid;
+  font-size: 4vh;
+}
+
+tbody > tr {
+  /* border: 2px solid white; */
+}
+table {
+  border-collapse: collapse;
+  width: 50vw;
+  height: 45vh;
 }
 
 .box_game {

@@ -468,14 +468,18 @@ fetch("https://rest-api-thsx.herokuapp.com/api/getscore")
   .then((response) => response.json())
   .then((data) => {
     allUsersFromRanking = data.sort((a, b) =>
-      a.score < b.score ? 1 : b.score < a.score ? -1 : 0
+      Number(a.score) < Number(b.score)
+        ? 1
+        : Number(b.score) < Number(a.score)
+        ? -1
+        : 0
     );
   })
   .then(() => {
     for (let i = 0; i < 10; i++) {
       if (!allUsersFromRanking[i]) return;
       document.querySelector(
-        "#rankField > table > tbody"
+        "#rankFieldId > table > tbody"
       ).innerHTML += `<tr><td>${i + 1}.</td><td>${
         allUsersFromRanking[i].username
       }</td><td>${allUsersFromRanking[i].score}</td></tr>`;
@@ -484,4 +488,7 @@ fetch("https://rest-api-thsx.herokuapp.com/api/getscore")
   .catch((error) => {
     console.error(error);
   });
-document.querySelector("#rank").addEventListener("click", (e) => {});
+document.querySelector("#rank").addEventListener("click", (e) => {
+  document.querySelector("#rankFieldId").classList.toggle("firstDisplayNone");
+  document.querySelector("#rankFieldId").classList.toggle("rankField");
+});
