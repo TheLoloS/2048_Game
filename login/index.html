@@ -33,7 +33,8 @@
           <input class="fbtn" type="submit" value="Log in" />
           <input
             class="fbtn"
-            onclick="window.location.replace('/register');"
+            onclick="window.location.href =
+          `${localStorage.getItem('mainHref')} + 'register/'`"
             value="Register"
           />
         </div>
