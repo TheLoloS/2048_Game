@@ -212,6 +212,29 @@ function notification(state) {
     div.children[0].textContent = "❤🥇 YOU WIN 🥇❤";
     div.children[3].children[0].textContent = "Graj Dalej";
   }
+  const username = localStorage.getItem("login");
+  const score = document.querySelector(".counter").textContent;
+  (async () => {
+    const result = await fetch(
+      "https://rest-api-thsx.herokuapp.com/api/setscore",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          score,
+        }),
+      }
+    ).then((res) => res.json());
+
+    if (result.status === "ok") {
+      new Popup("success", "Score" + score + " been added to rank!");
+    } else {
+      new Popup("error", result.error);
+    }
+  })();
 }
 
 //add click events
