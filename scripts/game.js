@@ -231,6 +231,9 @@ function notification(state) {
 
     if (result.status === "ok") {
       new Popup("success", "Score" + score + " been added to rank!");
+      document.querySelector(
+        "#notification > div:nth-child(3) > p:nth-child(2) > i"
+      ).textContent = result.score;
     } else {
       new Popup("error", result.error);
     }
@@ -486,32 +489,40 @@ document.querySelector("#logout").addEventListener("click", (e) => {
   localStorage.removeItem("token");
   window.location.reload(true);
 });
+const rankDiv = document.querySelector("#rankFieldId > table > tbody");
+const cloneRankDiv = rankDiv.cloneNode(true);
 let allUsersFromRanking;
-fetch("https://rest-api-thsx.herokuapp.com/api/getscore")
-  .then((response) => response.json())
-  .then((data) => {
-    allUsersFromRanking = data.sort((a, b) =>
-      Number(a.score) < Number(b.score)
-        ? 1
-        : Number(b.score) < Number(a.score)
-        ? -1
-        : 0
-    );
-  })
-  .then(() => {
-    for (let i = 0; i < 10; i++) {
-      if (!allUsersFromRanking[i]) return;
-      document.querySelector(
-        "#rankFieldId > table > tbody"
-      ).innerHTML += `<tr><td>${i + 1}.</td><td>${
-        allUsersFromRanking[i].username
-      }</td><td>${allUsersFromRanking[i].score}</td></tr>`;
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+function getUserData() {
+  fetch("https://rest-api-thsx.herokuapp.com/api/getscore")
+    .then((response) => response.json())
+    .then((data) => {
+      document.querySelector("#rankFieldId > table > tbody").innerHTML =
+        cloneRankDiv.innerHTML;
+      allUsersFromRanking = data.sort((a, b) =>
+        Number(a.score) < Number(b.score)
+          ? 1
+          : Number(b.score) < Number(a.score)
+          ? -1
+          : 0
+      );
+    })
+    .then(() => {
+      for (let i = 0; i < 10; i++) {
+        if (!allUsersFromRanking[i]) return;
+        document.querySelector(
+          "#rankFieldId > table > tbody"
+        ).innerHTML += `<tr><td>${i + 1}.</td><td>${
+          allUsersFromRanking[i].username
+        }</td><td>${allUsersFromRanking[i].score}</td></tr>`;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 document.querySelector("#rank").addEventListener("click", (e) => {
+  getUserData();
   document.querySelector("#rankFieldId").classList.toggle("firstDisplayNone");
   document.querySelector("#rankFieldId").classList.toggle("rankField");
 });

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <script type="module">
       localStorage.getItem("token") && window.location.replace("/");
@@ -7,26 +7,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>register</title>
+    <title>Zarejestruj</title>
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../styleForm.css" />
     <link rel="icon" type="image/png" href="../favicon-16x16.png" />
   </head>
   <body>
     <section>
-      <h1>Registration</h1>
+      <h1>Zarejestruj</h1>
       <form id="reg-form">
         <input
           class="finput"
           type="text"
           autocomplete="off"
-          placeholder="Username"
+          placeholder="Nazwa"
         />
         <input
           class="finput"
           type="password"
           autocomplete="off"
-          placeholder="Password"
+          placeholder="Hasło"
         />
         <div>
           <input class="fbtn" type="submit" value="Register" />
@@ -34,7 +34,7 @@
             class="fbtn"
             onclick="window.location.href =
           `${localStorage.getItem('mainHref')}login/`"
-            value="log in"
+            value="Zaloguj"
           />
         </div>
       </form>

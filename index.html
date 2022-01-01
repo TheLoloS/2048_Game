@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <script>
       localStorage.setItem("mainHref", window.location.href);
@@ -44,7 +44,7 @@
 
     <div class="counter" id="counter"></div>
     <div class="reset" id="reset">Reset</div>
-    <div class="logout" id="logout">Logout</div>
+    <div class="logout" id="logout">Wyloguj</div>
     <div class="rank" id="rank">
       <img src="./media/crown.png" height="80%" />
     </div>
@@ -85,10 +85,11 @@
       </div>
     </div>
     <div class="firstDisplayNone notification" id="notification">
-      <h1>GAME OVER</h1>
+      <h1>Przegrana</h1>
       <hr />
       <div>
         <p>Twój wynik to: <i>0</i></p>
+        <p>Twój najwyższy wynik to: <i>0</i></p>
       </div>
 
       <div><button>Analiza</button> <button>Reset</button></div>
@@ -98,7 +99,7 @@
         <tbody>
           <tr>
             <td>Pozycja</td>
-            <td>Nick</td>
+            <td>Nazwa</td>
             <td>Wynik</td>
           </tr>
         </tbody>

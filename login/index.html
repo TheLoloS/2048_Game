@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <script type="module">
       localStorage.getItem("token") && window.location.replace("/");
@@ -14,28 +14,28 @@
   </head>
   <body>
     <section>
-      <h1>Login</h1>
+      <h1>Zaloguj</h1>
       <hr />
       <form id="login">
         <input
           class="finput"
           type="text"
           autocomplete="off"
-          placeholder="Username"
+          placeholder="Nazwa"
         />
         <input
           class="finput"
           type="password"
           autocomplete="off"
-          placeholder="Password"
+          placeholder="Hasło"
         />
         <div>
-          <input class="fbtn" type="submit" value="Log in" />
+          <input class="fbtn" type="submit" value="Zaloguj" />
           <input
             class="fbtn"
             onclick="window.location.href =
           `${localStorage.getItem('mainHref')}register/`"
-            value="Register"
+            value="Zarejestruj"
           />
         </div>
       </form>

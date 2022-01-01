@@ -557,4 +557,7 @@ table {
     width: 13vh;
     height: 5vh;
   }
+  #rankFieldId > table > tbody > tr {
+    font-size: 2.5vh;
+  }
 }
